@@ -1,0 +1,17 @@
+.tables{
+
+}
+
+.databaseList {
+    list-style-type: none;
+}
+.database {
+    cursor: pointer;
+}
+
+.tableList {
+    list-style-type: none;
+}
+.table {
+    cursor: pointer;
+}

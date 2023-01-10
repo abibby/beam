@@ -1,0 +1,33 @@
+.home{ 
+    display: grid;
+
+    grid-template-areas: 
+        'sidebar query'
+        'sidebar results';
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 300px 1fr;
+
+    height: 100%;
+    overflow: hidden;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    overflow-y: auto;
+}
+
+
+.query {
+    grid-area: query;
+}
+
+.results {
+    grid-area: results;
+    overflow-y: auto;
+}
+
+.textarea {
+    width: 100%;
+    height: calc(100% - 80px);
+    resize: none;
+}

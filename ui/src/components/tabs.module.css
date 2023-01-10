@@ -1,0 +1,40 @@
+.tabs {
+display: flex;
+}
+
+.tab {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 6px;
+    margin: 2px
+}
+
+.tab::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    background-color: grey;
+    width: 1px;
+    height: 80%;
+    top: 10%;
+}
+
+.tab::after {
+    right: 0;
+    transform: translate(50%) translate(2px);
+}
+
+.tab.beforeActive::after,
+.tab.last::after,
+.tab.active::after {
+    content: none;
+}
+
+.tab.active {
+    background-color: rgba(0,0,0,0.25);
+}
+
+.tab:hover {
+    background-color: rgba(0,0,0,0.1);
+}

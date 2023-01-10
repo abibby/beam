@@ -1,0 +1,41 @@
+.result {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    min-width: 100%;
+}
+
+.result td,
+.result th {
+    border: 1px solid grey;
+    white-space: nowrap;
+    padding: 5px;
+}
+
+.result th {
+    position: sticky;
+    top: 1px;
+    background-color: rgb(var(--background));
+    outline: 1px solid grey;
+    text-align: left;
+}
+
+.headerCell {
+    display: flex;
+}
+
+.columnName {
+    flex-grow: 1;
+}
+
+.result tr:nth-child(even) {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.null {
+    color: rgba(0,0,0,0.4);
+}
+.order {
+    text-align: right;
+    min-width: 1.5em;
+    cursor: pointer;
+}

@@ -11,6 +11,7 @@ export interface HighlightProps {
 
 export function Highlight({ code, class: className }: HighlightProps) {
     const a = hljs.highlight('sql', code)
+
     return (
         <code
             class={className}

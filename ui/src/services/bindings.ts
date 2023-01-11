@@ -10,12 +10,20 @@ export interface Binding {
 
 const bindings: Array<Pick<Binding, 'command' | 'keyBinding'>> = [
     {
-        command: 'format',
+        command: 'editor.format',
         keyBinding: 'shift+alt+f',
     },
     {
-        command: 'format',
+        command: 'palette.openTable',
         keyBinding: 'ctrl+p',
+    },
+    {
+        command: 'palette.openDatabase',
+        keyBinding: 'ctrl+r',
+    },
+    {
+        command: 'palette.close',
+        keyBinding: 'escape',
     },
 ]
 

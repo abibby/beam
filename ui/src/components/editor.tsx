@@ -19,7 +19,7 @@ export function Editor({ code, onChange }: EditorProps) {
     }, [code, onChange])
 
     useCommand(
-        'format',
+        'editor.format',
         () => {
             formatCode()
         },
@@ -27,16 +27,13 @@ export function Editor({ code, onChange }: EditorProps) {
     )
 
     return (
-        <div class={styles.editorWrapper}>
-            <button onClick={formatCode}>Format</button>
-            <div class={styles.editor}>
-                <textarea
-                    class={styles.textarea}
-                    value={code}
-                    onInput={bindValue(onChange)}
-                />
-                <Highlight class={styles.highlighted} code={code} />
-            </div>
+        <div class={styles.editor} style={`--lines:${code.split('\n').length}`}>
+            <textarea
+                class={styles.textarea}
+                value={code}
+                onInput={bindValue(onChange)}
+            />
+            <Highlight class={styles.highlighted} code={code} />
         </div>
     )
 }

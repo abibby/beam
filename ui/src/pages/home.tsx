@@ -2,6 +2,7 @@ import { bind } from '@zwzn/spicy'
 import { h } from 'preact'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import { query, QueryResponse } from '../api/database'
+import { CommandPalette } from '../components/command-palette'
 import { Editor } from '../components/editor'
 import { Result } from '../components/result'
 import { Tables } from '../components/tables'
@@ -189,6 +190,7 @@ export function Home() {
 
     return (
         <div class={styles.home}>
+            <CommandPalette />
             <div class={styles.sidebar}>
                 <Tables onSelectTable={selectTable} />
             </div>

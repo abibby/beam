@@ -53,7 +53,6 @@ export function Tables({ onSelectTable }: TableProps) {
     }, [setSchema])
 
     const [search, setSearch] = usePersistentState('tables-search', '')
-    console.log(search)
 
     if (schema === null) {
         return <div>loading...</div>

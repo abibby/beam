@@ -1,7 +1,8 @@
-import { bind, bindValue } from '@zwzn/spicy'
+import { bind } from '@zwzn/spicy'
 import { h } from 'preact'
 import { useCallback, useEffect, useState } from 'preact/hooks'
 import { query, QueryResponse } from '../api/database'
+import { Editor } from '../components/editor'
 import { Result } from '../components/result'
 import { Tables } from '../components/tables'
 import { Tab, Tabs } from '../components/tabs'
@@ -199,12 +200,17 @@ export function Home() {
                     onNewTab={newTab}
                     onCloseTab={closeTab}
                 />
-                <textarea
+                <Editor
+                    code={activeTab?.query ?? ''}
+                    onChange={setActiveTabQuery}
+                />
+                {/* <textarea
                     class={styles.textarea}
                     value={activeTab?.query ?? ''}
                     onInput={bindValue(setActiveTabQuery)}
                     // onKeyDown={keyDown}
                 />
+                <Highlight code={activeTab?.query ?? ''} /> */}
                 <button
                     class={styles.run}
                     onClick={bind(activeTab?.query ?? '', run)}

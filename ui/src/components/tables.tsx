@@ -4,9 +4,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { bind, bindValue } from '@zwzn/spicy'
 import { h } from 'preact'
-import { useCallback, useEffect, useState } from 'preact/hooks'
-import { query } from '../api/database'
+import { useCallback } from 'preact/hooks'
 import { usePersistentState } from '../hooks/use-persistent-state'
+import { useStateContainer } from '../services/state'
+import { tables } from '../state/tables'
 import { Icon } from './icon'
 import styles from './tables.module.css'
 
@@ -17,44 +18,45 @@ export interface TableProps {
 }
 
 export function Tables({ onSelectTable }: TableProps) {
-    const [schema, setSchema] = useState<Array<[string, string[]]> | null>(null)
-    useEffect(() => {
-        query({
-            database: 'default',
-            query: 'select `table_schema`, `table_name` from `information_schema`.`tables`',
-            args: [],
-        }).then(result => {
-            if ('error' in result) {
-                return
-            }
+    const schema = useStateContainer(tables)
+    // const [schema, setSchema] = useState<Array<[string, string[]]> | null>(null)
+    // useEffect(() => {
+    //     query({
+    //         database: 'default',
+    //         query: 'select `table_schema`, `table_name` from `information_schema`.`tables`',
+    //         args: [],
+    //     }).then(result => {
+    //         if ('error' in result) {
+    //             return
+    //         }
 
-            const dbs = new Map<string, string[]>()
+    //         const dbs = new Map<string, string[]>()
 
-            for (const [database, table] of result.data) {
-                if (database === null || table === null) {
-                    continue
-                }
-                let t = dbs.get(database)
-                if (t === undefined) {
-                    t = []
-                }
-                dbs.set(database, t.concat(table))
-            }
+    //         for (const [database, table] of result.data) {
+    //             if (database === null || table === null) {
+    //                 continue
+    //             }
+    //             let t = dbs.get(database)
+    //             if (t === undefined) {
+    //                 t = []
+    //             }
+    //             dbs.set(database, t.concat(table))
+    //         }
 
-            setSchema(
-                Array.from(dbs)
-                    .map(([name, tables]): [string, string[]] => [
-                        name,
-                        tables.sort(),
-                    ])
-                    .sort((a, b) => a[0].localeCompare(b[0])),
-            )
-        })
-    }, [setSchema])
+    //         setSchema(
+    //             Array.from(dbs)
+    //                 .map(([name, tables]): [string, string[]] => [
+    //                     name,
+    //                     tables.sort(),
+    //                 ])
+    //                 .sort((a, b) => a[0].localeCompare(b[0])),
+    //         )
+    //     })
+    // }, [setSchema])
 
     const [search, setSearch] = usePersistentState('tables-search', '')
 
-    if (schema === null) {
+    if (schema === undefined) {
         return <div>loading...</div>
     }
 
